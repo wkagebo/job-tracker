@@ -1,4 +1,4 @@
-package com.wkagebo.job_tracker;
+package com.wkagebo.jobtracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.wkagebo.job-tracker' is invalid and this project uses 'com.wkagebo.job_tracker' instead.
+* The original package name 'com.wkagebo.job-tracker' is invalid and this project uses 'com.wkagebo.jobtracker' instead.
 
 # Getting Started
 

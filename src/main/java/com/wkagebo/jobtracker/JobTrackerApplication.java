@@ -1,4 +1,4 @@
-package com.wkagebo.job_tracker;
+package com.wkagebo.jobtracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
