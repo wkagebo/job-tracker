@@ -21,6 +21,8 @@ public class JobApplication {
 
     private String role;
 
+    private String location;
+
     private LocalDate dateApplied;
 
     @Enumerated(EnumType.STRING)
