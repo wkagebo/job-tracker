@@ -22,11 +22,11 @@ public class JobApplicationService {
         return jobApplicationRepository.save(jobApplication);
     }
 
-    public void updateApplicationStatus(Long applicationId, ApplicationStatus newStatus) {
+    public JobApplication updateApplicationStatus(Long applicationId, ApplicationStatus newStatus) {
         JobApplication application =
                 jobApplicationRepository.findById(applicationId).orElseThrow(RuntimeException::new);
         application.setStatus(newStatus);
-        jobApplicationRepository.save(application);
+        return jobApplicationRepository.save(application);
     }
 
     public List<JobApplication> getAllJobApplications() {
