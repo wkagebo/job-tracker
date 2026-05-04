@@ -1,5 +1,6 @@
 package com.wkagebo.jobtracker.service;
 
+import com.wkagebo.jobtracker.messaging.StatusUpdateProducer;
 import com.wkagebo.jobtracker.model.ApplicationStatus;
 import com.wkagebo.jobtracker.model.JobApplication;
 import com.wkagebo.jobtracker.repository.JobApplicationRepository;
@@ -12,9 +13,12 @@ import java.util.List;
 public class JobApplicationService {
 
     private final JobApplicationRepository jobApplicationRepository;
+    private final StatusUpdateProducer statusUpdateProducer;
 
-    public JobApplicationService(JobApplicationRepository jobApplicationRepository) {
+    public JobApplicationService(JobApplicationRepository jobApplicationRepository,
+                                 StatusUpdateProducer statusUpdateProducer) {
         this.jobApplicationRepository = jobApplicationRepository;
+        this.statusUpdateProducer = statusUpdateProducer;
     }
 
     public JobApplication createJobApplication(JobApplication jobApplication) {
@@ -26,7 +30,9 @@ public class JobApplicationService {
         JobApplication application =
                 jobApplicationRepository.findById(applicationId).orElseThrow(RuntimeException::new);
         application.setStatus(newStatus);
-        return jobApplicationRepository.save(application);
+        JobApplication saved = jobApplicationRepository.save(application);
+        statusUpdateProducer.sendStatusUpdate(applicationId, newStatus);
+        return saved;
     }
 
     public List<JobApplication> getAllJobApplications() {
